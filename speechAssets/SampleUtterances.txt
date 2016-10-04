@@ -1,0 +1,7 @@
+GetKamasutraPosition to explain the position {Position}
+GetKamasutraPosition to explain {Position}
+
+GetAllKamasutraPositions to list all Kamasutra positions
+GetAllKamasutraPositions to tell all Kamasutra positions
+GetAllKamasutraPositions to say all Kamasutra positions
+GetAllKamasutraPositions to send all Kamasutra positions

@@ -1,0 +1,25 @@
+{
+  "intents": [
+    {
+      "intent": "GetKamasutraPosition",
+      "slots": [
+        {
+          "name": "Position",
+          "type": "POSITION"
+        }
+      ]
+    },
+    {
+      "intent": "GetAllKamasutraPositions"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

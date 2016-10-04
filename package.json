@@ -1,0 +1,16 @@
+{
+  "name": "kamasutra-alexa",
+  "version": "0.0.1",
+  "description": "Kamasutra Positions",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Mariano Gonzalez",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.6.6",
+    "lodash": "^4.11.1",
+    "config": "^1.21.0"
+  }
+}
