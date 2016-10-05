@@ -8,8 +8,7 @@
           "type": "POSITION"
         }
       ]
-    },
-    {
+    }, {
       "intent": "GetAllKamasutraPositions"
     },
     {

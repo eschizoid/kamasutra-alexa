@@ -139,7 +139,16 @@ Response.prototype = (function () {
                 outputSpeech: createSpeechObject(options.reprompt)
             };
         }
-        if (options.cardTitle && options.cardContent && options.cardSmallImageUrl && options.cardLargeImageUrl) {
+
+        if (options.cardTitle && options.cardContent) {
+            alexaResponse.card = {
+                type: 'Simple',
+                title: options.cardTitle,
+                content: options.cardContent
+            };
+        }
+
+        if (options.cardSmallImageUrl && options.cardLargeImageUrl) {
             alexaResponse.card = {
                 type: 'Standard',
                 title: options.cardTitle,
@@ -168,7 +177,16 @@ Response.prototype = (function () {
                 shouldEndSession: true
             }));
         },
-        tellWithCard: function (speechOutput, cardTitle, cardContent, smallImageUrl, largeImageUrl) {
+        tellWithCard: function (speechOutput, cardTitle, cardContent) {
+            this._context.succeed(buildSpeechletResponse({
+                session: this._session,
+                output: speechOutput,
+                cardTitle: cardTitle,
+                cardContent: cardContent,
+                shouldEndSession: true
+            }));
+        },
+        tellWithCardAndImage: function (speechOutput, cardTitle, cardContent, smallImageUrl, largeImageUrl) {
             this._context.succeed(buildSpeechletResponse({
                 session: this._session,
                 output: speechOutput,
