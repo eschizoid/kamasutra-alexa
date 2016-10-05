@@ -1,6 +1,6 @@
-![Alt text](./images/108.jpg?raw=false)
+![Alt text](./images/108.jpg)
 
-##CTA-AWS Lambda function for Alexa
+##Kamaustra-AWS Lambda function for Alexa
 
 ### Setup
 To run this example skill you need to do two things. The first is to deploy the example code in lambda, and the second is to configure the Alexa skill to use Lambda.
@@ -12,7 +12,7 @@ To run this example skill you need to do two things. The first is to deploy the 
 4. Name the Lambda Function "Bus Tracker".
 5. Select the runtime as Node.js.
 6. Go to the the root directory and execute `./gradlew clean buildAlexaSkillZip`.
-7. Select Code entry type as "Upload a .ZIP file" and then upload the file `build/distribution/chicago-bus-tracker-0.0.1.zip` to the Lambda.
+7. Select Code entry type as "Upload a .ZIP file" and then upload the file `build/distribution/kamasutra-alexa-0.0.1.zip` to the Lambda.
 8. Keep the Handler as index.handler (this refers to the main js file in the zip).
 9. Create a basic execution role and click create.
 10. Leave the Advanced settings as the defaults.
@@ -36,7 +36,7 @@ To run this example skill you need to do two things. The first is to deploy the 
 
 ### Examples:
 #### One-shot model:
-    User: "Alexa, ask CTA when is my next bus coming?"
-    Alexa: "(queries CTA rest API and finds when the next bus is comming)"
+    User: "Alexa, ask Kamaustra to explain the position doggy style"
+    Alexa: "(describes the Kamsutra position Doggy Style)"
     
 ### Next Step
