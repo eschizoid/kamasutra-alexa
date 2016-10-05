@@ -31,7 +31,6 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
         console.log('Kamasutra Position = ' + key);
 
         if (config.has(key)) {
-
             var speechOutput = {
                 speech: "<speak>" +
                         "<p>I sent you an Alexa Card with the description of the position you requested. Please go ahead an open your Alexa App</p>" +

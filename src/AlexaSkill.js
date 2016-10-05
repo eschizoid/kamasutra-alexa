@@ -143,7 +143,7 @@ Response.prototype = (function () {
             alexaResponse.card = {
                 type: 'Standard',
                 title: options.cardTitle,
-                content: options.cardContent,
+                text: options.cardContent,
                 image: {
                     smallImageUrl: options.cardSmallImageUrl,
                     largeImageUrl: options.cardLargeImageUrl
