@@ -11,6 +11,7 @@
   "dependencies": {
     "aws-sdk": "^2.6.6",
     "lodash": "^4.11.1",
-    "config": "^1.21.0"
+    "config": "^1.21.0",
+    "underscore": "^1.8.3"
   }
 }

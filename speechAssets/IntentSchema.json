@@ -8,8 +8,12 @@
           "type": "POSITION"
         }
       ]
-    }, {
+    },
+    {
       "intent": "GetAllKamasutraPositions"
+    },
+    {
+      "intent": "GetRandomKamasutraPosition"
     },
     {
       "intent": "AMAZON.HelpIntent"

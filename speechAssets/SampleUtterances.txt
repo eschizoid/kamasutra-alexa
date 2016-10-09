@@ -3,3 +3,6 @@ GetKamasutraPosition to explain {Position}
 
 GetAllKamasutraPositions to list all positions
 GetAllKamasutraPositions to send all Kamasutra positions
+
+GetRandomKamasutraPosition to send me a random position
+GetRandomKamasutraPosition to tell me a random position

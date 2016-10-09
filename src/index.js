@@ -2,7 +2,14 @@
 
 var AlexaSkill = require('./AlexaSkill.js');
 var config = require('config');
+var _ = require('underscore');
 var APP_ID = "amzn1.ask.skill.ab6a9153-909e-4024-96a8-b6f9e3154e4d";
+var kamasutraPositionsArray = ["The Cross", "The Fantastic Rocking Horse", "The Clip", "The Peg", "The Bridge", "The Slide", "The Crossed Keys", "The Close Up", "The Amazon",
+                               "The Catherine Wheel", "The Eagle", "The Ape", "The Star", "The Kneel", "The Glowing Juniper", "The Squat Balance", "The Lustful Eg", "Bandoleer",
+                               "The Curled Angel", "The Hero", "The Glowing Triangle", "The Padlock", "The Crouching tiger", "The Ascent To Desire", "The Double Decker",
+                               "The Reclining Lotus", "The Super 8", "The Splitting Bamboo", "The Nirvana", "The Balancing Act", "The Hound", "The Deckchair", "The Rowing Boat",
+                               "The Frog", "The Seduction", "The X Rated", "The Rock And Roller", "Doggy Style", "The Triumph Arch", "The Classic", "The Suspended Scissors",
+                               "The Erotic v", "The Propeller", "The Ship", "The Plough", "The Magic mountain", "The Fan", "The Butterfly", "The Reverse cowgirl", "The Dolphin"];
 
 var KamasutraPositionRetriever = function () {
     AlexaSkill.call(this, APP_ID);
@@ -31,58 +38,7 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
             type: AlexaSkill.speechOutputType.SSML
         };
 
-        var kamasutraPositions = "The Cross\n" +
-                                "The Fantastic Rocking Horse\n" +
-                                "The Clip\n" +
-                                "The Peg\n" +
-                                "The Bridge\n" +
-                                "The Slide\n" +
-                                "The Crossed Keys\n" +
-                                "The Close Up\n" +
-                                "The Amazon\n" +
-                                "The Catherine Wheel\n" +
-                                "The Eagle\n" +
-                                "The Ape\n" +
-                                "The Star\n" +
-                                "The Kneel\n" +
-                                "The Glowing Juniper\n" +
-                                "The Squat Balance\n" +
-                                "The Lustful Eg\n" +
-                                "Bandoleer\n" +
-                                "The Curled Angel\n" +
-                                "The Hero\n" +
-                                "The Glowing Triangle\n" +
-                                "The Padlock\n" +
-                                "The Crouching tiger\n" +
-                                "The Ascent To Desire\n" +
-                                "The Double Decker\n" +
-                                "The Reclining Lotus\n" +
-                                "The Super 8\n" +
-                                "The Splitting Bamboo\n" +
-                                "The Nirvana\n" +
-                                "The Balancing Act\n" +
-                                "The Hound\n" +
-                                "The Deckchair\n" +
-                                "The Rowing Boat\n" +
-                                "The Frog\n" +
-                                "The Seduction\n" +
-                                "The X Rated\n" +
-                                "The Rock And Roller\n" +
-                                "Doggy Style\n" +
-                                "The Triumph Arch\n" +
-                                "The Classic\n" +
-                                "The Suspended Scissors\n" +
-                                "The Erotic v\n" +
-                                "The Propeller\n" +
-                                "The Ship\n" +
-                                "The Plough\n" +
-                                "The Magic mountain\n" +
-                                "The Fan\n" +
-                                "The Butterfly\n" +
-                                "The Reverse cowgirl\n" +
-                                "The Dolphin";
-
-        response.tellWithCard(speechOutput, 'KAMASUTRA POSITIONS', kamasutraPositions);
+        response.tellWithCard(speechOutput, 'KAMASUTRA POSITIONS', kamasutraPositionsArray.join("\n"));
     },
 
     'GetKamasutraPosition': function (intent, session, response) {
@@ -100,12 +56,35 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
                 type: AlexaSkill.speechOutputType.SSML
             };
 
-            response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'),
-                                          'https://s3.amazonaws.com/alexa-kamasutra/small/' + config.get(key + '.' + 'image_index') + '.png',
-                                          'https://s3.amazonaws.com/alexa-kamasutra/large/' + config.get(key + '.' + 'image_index') + '.png');
+            // response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'),
+            //                               'https://s3.amazonaws.com/alexa-kamasutra/small/' + config.get(key + '.' + 'image_index') + '.png',
+            //                               'https://s3.amazonaws.com/alexa-kamasutra/large/' + config.get(key + '.' + 'image_index') + '.png');
+
+            response.tellWithCard(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'));
+
         } else {
             response.tell('I was not able to find the position you requested, please try again!')
         }
+    },
+
+    'GetRandomKamasutraPosition': function (intent, session, response) {
+        var position = _.sample(kamasutraPositionsArray);
+        console.log(position);
+
+        var key = intent.slots.Position.value.toLowerCase().replace(' ', '_');
+        console.log('Kamasutra Position = ' + key);
+
+        var speechOutput = {
+            speech: "<speak>" +
+                    "<p>I sent you an Alexa Card with a random Kamasutra position you requested. Please go ahead an open your Alexa App.</p>" +
+                    "<p>Ohh by the way," + "<break time='0.5s'/>" + "Good Luck!</p>" +
+                    "</speak>",
+            type: AlexaSkill.speechOutputType.SSML
+        };
+
+        response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'),
+                                      'https://s3.amazonaws.com/alexa-kamasutra/small/' + config.get(key + '.' + 'image_index') + '.png',
+                                      'https://s3.amazonaws.com/alexa-kamasutra/large/' + config.get(key + '.' + 'image_index') + '.png');
     },
 
     'AMAZON.HelpIntent': function (intent, session, response) {
