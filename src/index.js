@@ -4,12 +4,12 @@ var AlexaSkill = require('./AlexaSkill.js');
 var config = require('config');
 var _ = require('underscore');
 var APP_ID = "amzn1.ask.skill.ab6a9153-909e-4024-96a8-b6f9e3154e4d";
-var kamasutraPositionsArray = ["The Cross", "The Fantastic Rocking Horse", "The Clip", "The Peg", "The Bridge", "The Slide", "The Crossed Keys", "The Close Up", "The Amazon",
-                               "The Catherine Wheel", "The Eagle", "The Ape", "The Star", "The Kneel", "The Glowing Juniper", "The Squat Balance", "The Lustful Eg", "Bandoleer",
-                               "The Curled Angel", "The Hero", "The Glowing Triangle", "The Padlock", "The Crouching tiger", "The Ascent To Desire", "The Double Decker",
-                               "The Reclining Lotus", "The Super 8", "The Splitting Bamboo", "The Nirvana", "The Balancing Act", "The Hound", "The Deckchair", "The Rowing Boat",
-                               "The Frog", "The Seduction", "The X Rated", "The Rock And Roller", "Doggy Style", "The Triumph Arch", "The Classic", "The Suspended Scissors",
-                               "The Erotic v", "The Propeller", "The Ship", "The Plough", "The Magic mountain", "The Fan", "The Butterfly", "The Reverse cowgirl", "The Dolphin"];
+var kamasutraPositionsArray = ["Cross", "Fantastic Rocking Horse", "Clip", "Peg", "Bridge", "Slide", "Crossed Keys", "Close Up", "Amazon",
+                               "Catherine Wheel", "Eagle", "Ape", "Star", "Kneel", "Glowing Juniper", "Squat Balance", "Lustful Eg", "Bandoleer",
+                               "Curled Angel", "Hero", "Glowing Triangle", "Padlock", "Crouching tiger", "Ascent To Desire", "Double Decker",
+                               "Reclining Lotus", "Super 8", "Splitting Bamboo", "Nirvana", "Balancing Act", "Hound", "Deckchair", "Rowing Boat",
+                               "Frog", "Seduction", "X Rated", "Rock And Roller", "Doggy Style", "Triumph Arch", "Classic", "Suspended Scissors",
+                               "Erotic v", "Propeller", "Ship", "Plough", "Magic mountain", "Fan", "Butterfly", "Reverse cowgirl", "Dolphin"];
 
 var KamasutraPositionRetriever = function () {
     AlexaSkill.call(this, APP_ID);
@@ -23,7 +23,7 @@ KamasutraPositionRetriever.prototype.eventHandlers.onSessionStarted = function (
 };
 
 KamasutraPositionRetriever.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
-    var output = 'Welcome to Kamasutra. Start by listing all the possible Kamasutra positions and later ask for the description of one in particular.';
+    var output = 'Welcome to Kamasutra Bible. Start by listing all the possible Kamasutra positions and later ask for the description of one in particular.';
     var reprompt = 'Okay. Whenever you\'re ready, you can start asking for any Kamasutra position.';
     response.ask(output, reprompt);
     console.log("onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
@@ -45,7 +45,7 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
         var position = intent.slots.Position.value;
         console.log(position);
 
-        var key = intent.slots.Position.value.toLowerCase().replace(' ', '_');
+        var key = intent.slots.Position.value.toLowerCase().split(' ').join('_');
         console.log('Kamasutra Position = ' + key);
 
         if (config.has(key)) {
@@ -82,13 +82,15 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
             type: AlexaSkill.speechOutputType.SSML
         };
 
-        response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'),
-                                      'https://s3.amazonaws.com/alexa-kamasutra/small/' + config.get(key + '.' + 'image_index') + '.png',
-                                      'https://s3.amazonaws.com/alexa-kamasutra/large/' + config.get(key + '.' + 'image_index') + '.png');
+        // response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'),
+        //                               'https://s3.amazonaws.com/alexa-kamasutra/small/' + config.get(key + '.' + 'image_index') + '.png',
+        //                               'https://s3.amazonaws.com/alexa-kamasutra/large/' + config.get(key + '.' + 'image_index') + '.png');
+
+        response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'));
     },
 
     'AMAZON.HelpIntent': function (intent, session, response) {
-        response.ask('Welcome to Kamasutra.' + 'Start by listing all the possible Kamasutra positions and later ask for the description of one in particular.',
+        response.ask('Welcome to Kamasutra Bible.' + 'Start by listing all the possible Kamasutra positions and later ask for description of one in particular.',
                      'Which Kamasutra position would you like to learn today?');
     },
 

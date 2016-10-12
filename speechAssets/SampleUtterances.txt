@@ -1,5 +1,5 @@
 GetKamasutraPosition to explain the position {Position}
-GetKamasutraPosition to explain {Position}
+GetKamasutraPosition to explain the {Position}
 
 GetAllKamasutraPositions to list all positions
 GetAllKamasutraPositions to send all Kamasutra positions
