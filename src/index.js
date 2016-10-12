@@ -63,7 +63,7 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
             response.tellWithCard(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'));
 
         } else {
-            response.tell('I was not able to find the position you requested, please try again!')
+            response.tell('I was not able to find the Kamasutra position you requested, please try again!')
         }
     },
 
