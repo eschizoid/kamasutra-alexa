@@ -71,7 +71,7 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
         var position = _.sample(kamasutraPositionsArray);
         console.log(position);
 
-        var key = intent.slots.Position.value.toLowerCase().replace(' ', '_');
+        var key = intent.slots.Position.value.toLowerCase().toLowerCase().split(' ').join('_');;
         console.log('Kamasutra Position = ' + key);
 
         var speechOutput = {
