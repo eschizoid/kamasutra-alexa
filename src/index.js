@@ -33,12 +33,12 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
     'GetAllKamasutraPositions': function (intent, session, response) {
         var speechOutput = {
             speech: "<speak>" +
-                    "<p>I sent you an Alexa Card with all the Kamasutra positions. Please go ahead an open your Alexa App and ask for the description of one in particular.</p>" +
+                    "<p>I sent you an Alexa Card with all the Kamasutra positions. Please go ahead an open your Alexa App and ask for the description of one in particular!</p>" +
                     "</speak>",
             type: AlexaSkill.speechOutputType.SSML
         };
 
-        response.tellWithCard(speechOutput, 'KAMASUTRA POSITIONS', kamasutraPositionsArray.join("\n"));
+        response.tellWithCard(speechOutput, 'KAMASUTRA POSITIONS', kamasutraPositionsArray.join("\n "));
     },
 
     'GetKamasutraPosition': function (intent, session, response) {
@@ -51,7 +51,7 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
         if (config.has(key)) {
             var speechOutput = {
                 speech: "<speak>" +
-                        "<p>I sent you an Alexa Card with the description of the position you requested. Please go ahead an open your Alexa App</p>" +
+                        "<p>I sent you an Alexa Card with the description of the Kamasutra position you requested. Please go ahead an open your Alexa App to find more information about it!</p>" +
                         "</speak>",
                 type: AlexaSkill.speechOutputType.SSML
             };
@@ -76,7 +76,7 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
 
         var speechOutput = {
             speech: "<speak>" +
-                    "<p>I sent you an Alexa Card with a random Kamasutra position you requested. Please go ahead an open your Alexa App.</p>" +
+                    "<p>I sent you an Alexa Card with a random Kamasutra position. Please go ahead an open your Alexa App to find more information about it!</p>" +
                     "<p>Ohh by the way," + "<break time='0.5s'/>" + "Good Luck!</p>" +
                     "</speak>",
             type: AlexaSkill.speechOutputType.SSML
