@@ -9,7 +9,7 @@ var kamasutraPositionsArray = ["Cross", "Fantastic Rocking Horse", "Clip", "Peg"
                                "Curled Angel", "Hero", "Glowing Triangle", "Padlock", "Crouching tiger", "Ascent To Desire", "Double Decker",
                                "Reclining Lotus", "Super 8", "Splitting Bamboo", "Nirvana", "Balancing Act", "Hound", "Deckchair", "Rowing Boat",
                                "Frog", "Seduction", "X Rated", "Rock And Roller", "Doggy Style", "Triumph Arch", "Classic", "Suspended Scissors",
-                               "Erotic v", "Propeller", "Ship", "Plough", "Magic mountain", "Fan", "Butterfly", "Reverse cowgirl", "Dolphin"];
+                               "Erotic v", "Propeller", "Ship", "Plough", "Magic Mountain", "Fan", "Butterfly", "Reverse cowgirl", "Dolphin"];
 
 var KamasutraPositionRetriever = function () {
     AlexaSkill.call(this, APP_ID);
