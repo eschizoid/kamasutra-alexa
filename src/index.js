@@ -42,26 +42,33 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
     },
 
     'GetKamasutraPosition': function (intent, session, response) {
-        var position = intent.slots.Position.value;
+        var position = intent.slots.Position;
         console.log(position);
 
-        var key = intent.slots.Position.value.toLowerCase().split(' ').join('_');
-        console.log('Kamasutra Position = ' + key);
+        var hasPosition = position && position.value;
 
-        if (config.has(key)) {
-            var speechOutput = {
-                speech: "<speak>" +
-                        "<p>I sent you an Alexa Card with the description of the Kamasutra position you requested. Please go ahead an open your Alexa App to find more information about it!</p>" +
-                        "</speak>",
-                type: AlexaSkill.speechOutputType.SSML
-            };
+        if (hasPosition) {
+            var key = position.value.toLowerCase().split(' ').join('_');
+            console.log('Kamasutra Position = ' + key);
 
-            // response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'),
-            //                               'https://s3.amazonaws.com/alexa-kamasutra/small/' + config.get(key + '.' + 'image_index') + '.png',
-            //                               'https://s3.amazonaws.com/alexa-kamasutra/large/' + config.get(key + '.' + 'image_index') + '.png');
+            if (config.has(key)) {
+                var speechOutput = {
+                    speech: "<speak>" +
+                            "<p>I sent you an Alexa Card with the description of the Kamasutra position you requested. Please go ahead an open your Alexa App to find more information about it!</p>"
+                            +
+                            "</speak>",
+                    type: AlexaSkill.speechOutputType.SSML
+                };
 
-            response.tellWithCard(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'));
+                // response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'),
+                //                               'https://s3.amazonaws.com/alexa-kamasutra/small/' + config.get(key + '.' + 'image_index') + '.png',
+                //                               'https://s3.amazonaws.com/alexa-kamasutra/large/' + config.get(key + '.' + 'image_index') + '.png');
 
+                response.tellWithCard(speechOutput, position.value.toUpperCase(), config.get(key + '.' + 'description'));
+
+            } else {
+                response.tell('I was not able to find the Kamasutra position you requested, please try again!')
+            }
         } else {
             response.tell('I was not able to find the Kamasutra position you requested, please try again!')
         }
@@ -71,7 +78,8 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
         var position = _.sample(kamasutraPositionsArray);
         console.log(position);
 
-        var key = intent.slots.Position.value.toLowerCase().toLowerCase().split(' ').join('_');;
+        var key = intent.slots.Position.value.toLowerCase().toLowerCase().split(' ').join('_');
+
         console.log('Kamasutra Position = ' + key);
 
         var speechOutput = {
@@ -86,7 +94,7 @@ KamasutraPositionRetriever.prototype.intentHandlers = {
         //                               'https://s3.amazonaws.com/alexa-kamasutra/small/' + config.get(key + '.' + 'image_index') + '.png',
         //                               'https://s3.amazonaws.com/alexa-kamasutra/large/' + config.get(key + '.' + 'image_index') + '.png');
 
-        response.tellWithCardAndImage(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'));
+        response.tellWithCard(speechOutput, position.toUpperCase(), config.get(key + '.' + 'description'));
     },
 
     'AMAZON.HelpIntent': function (intent, session, response) {
